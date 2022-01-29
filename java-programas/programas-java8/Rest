@@ -1,0 +1,168 @@
+get consultar informacion 
+
+head consultar la metadata 
+patch para actualizar un recurso de manera parcial (solamente se actualiza  lo de mi body de entrada) 
+si el recurso no se encuentra manda un error
+put actualizar todo el recuerso(body entrada)  y sino se crea 
+delete borra los recursos 
+post crea los recursos o registros
+API aplication programming interface facilita la comunicación entre el front end  y el back end
+
+principio de interfaz uniformes
+la fase sin estado 
+arquitectura del Sistema
+principio de código  bajo demanda
+
+SOAP verbo post 
+
+REST 
+
+GET, POST, PUT, PATCH y DELETE,HEAD
+
+url rest procolo(scheme) + dominio(autoridad) + path(nombre+version+recurso) + query
+
+uri la direccion del recurso
+identificador unica del recurso
+url se divide urn + url -donde esta ubicado el recursos
+
+200 OK. Respuesta estándar para peticiones correctas.
+201 Created. La petición ha sido completada y ha resultado en la creación de un nuevo recurso.
+202 Accepted. La petición ha sido aceptada para procesamiento, pero este no ha sido completado.
+400 Bad Request. La solicitud contiene sintaxis errónea.
+403 Forbidden. La solicitud fue legal, pero el servidor rehúsa responder dado que el cliente no tiene los privilegios para hacerla.
+404 Not Found. Recurso no encontrado. Se utiliza cuando el servidor web no encuentra la página o recurso solicitado.
+500 Internal Server Error. Es un código comúnmente emitido por aplicaciones empotradas en servidores web, cuando se encuentran con situaciones de error ajenas a la naturaleza del servidor web.
+
+Esta característica proporciona fiabilidad, escalabilidad y una fácil portabilidad a cualquier otra plataforma,
+ ya que aisla por completo al cliente del servidor. Sólo se requiere que el intercambio de información de 
+ las respuestas se haga en un formato soportado, por lo general JSON o XML. Dicha separación entre el cliente y 
+ el servidor hace que se pueda migrar a otros servidores o bases de datos de manera transparente, siempre y 
+ cuando los datos se sigan enviado de manera correcta. Esto convierte a las APIs REST en una de las arquitecturas web 
+ más utilizadas  por la flexibilidad que aportan a cualquier entorno de trabajo sea cual sea su naturaleza
+
+
+ Interfaz uniforme
+
+verbos seguros 
+get patch
+verbos no seguros
+ put
+ post
+
+ 1-100 informativo
+200 exito
+201 post - put
+204 exito pero sin contenido
+ 300 redireccion
+ 400 errores  de cliente
+ 500 errores del servidor
+
+idempotencia 
+POST idempotente
+ 
+ 303 informacion de otro sitio
+ 301 se movio permanentemente
+ 400 error en la petición
+ 401 sin autentificación
+ 403 Forbidden no tiene ese privilegios
+ 404 recurso no existe NOT Found
+ 405 metodo no permitido
+
+406 not aceptable
+409  peticion duplicada
+408  solicitud fuera de tiempo
+
+503 servicio no esta disponible
+502-504 errores servidor 3ro
+501 no se encuentra implementado
+
+POST una accion en la uri postcontroller  restless
+ejemplo 
+
+post 
+urlBase/GFTEstudiantes/search
+
+urlBase/GFT/v0/estudiantes/search
+JSON estructura clave -valor
+
+{
+    data:{
+        "id":"123"
+        "origin":{
+
+        }
+    }
+}
+
+
+acoplamiento débil de servicio 
+positivo el contrato se realice antes del servicio api first
+acoplamiento fuerte 
+la api se cambia de acuerdo al servicio
+
+api application programming interface
+
+es la parte pública que nos define como utilizaremos la api en nuestro código
+
+raml restful api modeling language
+nos permite modelar  siguiendo un contrato de las apis siguiendo un estándar
+
+permite definir recursos,métodos,parámetros,respuestas,tipos de medios
+
+
+type(Objetos)
+Es el recurso o la entiedadc de negocio que contiene sus característica o atributos que lo componen
+
+ejemplo 
+types:
+    computadora:
+    type:Object
+    description:entidad que representa una computadora
+    properties:
+        id:
+            type:string
+            description:
+            required:
+
+trait 
+es un tipo de recurso que usa para extraer definiciones de endpoints para su reutilizacion
+
+resource type
+es otro mecanismo de reutilzacion que permite implementar los patrones encontrrados en la api
+se puede especificar esquemas de seguridad,metodos,tipos de salida,códigos de respuestas
+
+Annotatios types
+son una forma de aumentar la especificación
+
+anotaciones de seguridad 
+cas e imc datos confidenciales
+
+auditable data esto es para que los datos se consideren auditables
+
+encrypted data indica que el valor de un campo debe ir cifrado para que el servicio los descifre 
+
+endpoints son las uris de un api o back end que responde una petición
+
+tipos de datos raml
+
+time-only
+datetime datetime-only
+number
+boolean 
+string 
+null
+files
+
+object(type o entidad)
+array(lista o coleccion)
+file(json base 64)
+
+
+paginación se utiliza para poder indicarle al servicio en que registro se debe realizar la siguiente peticion qque realiza la petición
+
+Expand
+se utiliza para poder traer datos que de manera  natural no puede traer el back debido al diseño
+
+ejemplo:
+/computadoras/{} 
+is:[expandable :{subEntities : "blocks"}]
